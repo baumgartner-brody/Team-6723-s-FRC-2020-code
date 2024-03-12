@@ -16,11 +16,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-/**
- * This is a demo program showing the use of OpenCV to do vision processing. The
- * image is acquired from the USB camera, then a rectangle is put on the image
- * and sent to the dashboard. OpenCV has many methods for different types of
- * processing.
+/** The TimedRobot class is the top level of all our code.
+ *  When we're not sure if something is getting called correctly,
+ *  you can either work your way up from the lowest level, or down from Robot
+ *  to find the problem.
  */
 public class Robot extends TimedRobot {  
   
@@ -32,6 +31,13 @@ public class Robot extends TimedRobot {
   Command fiver;
   public SendableChooser<Command> autochooser;
   
+  /** The static keyword needs to be used with caution. 
+   *  It is used to declare variables that may only have 1 unique instance in an entire codebase.
+   *  For this reason, we use it for subsystems and OI, since the robot should only ever have one 
+   *  of each subsystem, and one object to interact with the joystick. 
+   * 
+   *  Unless you know what you are doing, avoid using "static" in other places.
+  */
   public static OI oi;
   public static Drivetrain drivetrain;
   public static Intake intake;
@@ -45,8 +51,8 @@ public class Robot extends TimedRobot {
   *  the StraightDrive command. Their accuracy depends very much on the robot's mechanical integrity 
   *  and their is a very good chance StraightDrive or "offset_speed" will need tinkering with.
   */
-  public static Double offset; 
-  public static Double offset_speed;
+  public Double offset; 
+  public Double offset_speed;
 
   /* Simple thread to plot sensor velocity and such */
 	encoder_velocity encoder_data;
@@ -62,7 +68,7 @@ public class Robot extends TimedRobot {
     indexer = new Indexer();
     shooter = new Shooter();
     
-    oi = new OI(); // Important that OI gets called after commands
+    oi = new OI(); // Important that OI gets called after commands and robotmap
     
     CameraServer.getInstance().startAutomaticCapture();
     CameraServer.getInstance().startAutomaticCapture(); // second camera 

@@ -41,8 +41,8 @@ public class encoder_velocity implements Runnable {
       double right_velocity = RobotMap.RrearMotor.getSelectedSensorVelocity(0);
       double right_position = RobotMap.RrearMotor.getSelectedSensorPosition(0) % 4096;
       double right_rotations = RobotMap.RrearMotor.getSelectedSensorPosition(0) / 4096;
-      Robot.offset = Math.abs(left_rotations) - Math.abs(right_rotations); 
-      Robot.offset_speed = Robot.offset / 10;
+      robot.offset = Math.abs(left_rotations) - Math.abs(right_rotations); 
+      robot.offset_speed = robot.offset / 10;
       
       double shooter_vel = RobotMap.Shooter.getSelectedSensorVelocity(0);
       double shooter_pos = RobotMap.Shooter.getSelectedSensorPosition(0) % 4096;
@@ -57,8 +57,8 @@ public class encoder_velocity implements Runnable {
       SmartDashboard.putNumber("shooter_velocity", shooter_vel);
       SmartDashboard.putNumber("shooter_position", shooter_pos);
       SmartDashboard.putNumber("shooter_rotations", shooter_rots); 
-      SmartDashboard.putNumber("offset", Robot.offset);
-      SmartDashboard.putNumber("offset_speed", Robot.offset_speed);
+      SmartDashboard.putNumber("offset", robot.offset);
+      SmartDashboard.putNumber("offset_speed", robot.offset_speed);
       SmartDashboard.putNumber("Gyro Angle", RobotMap.Mutton.getAngle());
     }
   }
